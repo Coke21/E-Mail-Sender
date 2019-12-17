@@ -1,0 +1,123 @@
+﻿<Window x:Class="EMailSender.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:local="clr-namespace:EMailSender.Views"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="{Binding Title, Mode=OneWay}" Height="450" Width="600"
+        ui:WindowHelper.UseModernWindowStyle="True" ResizeMode="CanMinimize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Column="1" Grid.Row="1" TabStripPlacement="Top">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="FileOutline" VerticalAlignment="Center"/>
+                        <Label Content="Select File" Margin="2 0 0 0"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <StackPanel>
+                    <Button x:Name="Choose" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Magnify" VerticalAlignment="Center"/>
+                            <Label Content="Choose" Margin="2 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBox x:Name="SelectedFileTextBox" IsReadOnly="True" ui:TextBoxHelper.IsDeleteButtonVisible="True">
+                        <ui:ControlHelper.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Kind="FileCheckOutline" VerticalAlignment="Center"/>
+                                <Label Content="Selected File:" Margin="2 0 0 0"/>
+                            </StackPanel>
+                        </ui:ControlHelper.Header>
+                    </TextBox>
+
+                    <Button x:Name="Upload" HorizontalAlignment="Center" Margin="0 2 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Upload" VerticalAlignment="Center"/>
+                            <Label Content="Upload" Margin="2 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBox x:Name="DownloadableLinkTextBox" IsReadOnly="True">
+                        <ui:ControlHelper.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <iconPacks:PackIconMaterial Kind="Download" VerticalAlignment="Center"/>
+                                <Label Content="Downloadable Link:" Margin="2 0 0 0"/>
+                            </StackPanel>
+                        </ui:ControlHelper.Header>
+                    </TextBox>
+                </StackPanel>
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="Gmail" VerticalAlignment="Center"/>
+                        <Label Content="E-Mail" Margin="2 0 0 0"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <StackPanel>
+                    <TextBox x:Name="EmailAddressTextBox" TextAlignment="Center">
+                        <ui:ControlHelper.Header>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <iconPacks:PackIconMaterial Kind="AccountOutline" VerticalAlignment="Center"/>
+                                <Label Content="Email Address:" Margin="2 0 0 0"/>
+                            </StackPanel>
+                        </ui:ControlHelper.Header>
+                    </TextBox>
+
+                    <StackPanel>
+                        <TextBox Text="{Binding SubjectTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" TextAlignment="Center"
+                                 Margin="0 2 0 0">
+                            <ui:ControlHelper.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <iconPacks:PackIconMaterial Kind="TextSubject" VerticalAlignment="Center"/>
+                                    <Label Content="Subject:" Margin="2 0 0 0"/>
+                                </StackPanel>
+                            </ui:ControlHelper.Header>
+                        </TextBox>
+
+                        <TextBox Text="{Binding TextTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="100" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto" Margin="0 2 0 0">
+                            <ui:ControlHelper.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <iconPacks:PackIconMaterial Kind="Text" VerticalAlignment="Center"/>
+                                    <Label Content="Text:" Margin="2 0 0 0"/>
+                                </StackPanel>
+                            </ui:ControlHelper.Header>
+                        </TextBox>
+                    </StackPanel>
+
+                    <Button x:Name="SendEmail" HorizontalAlignment="Center" Margin="0 5 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Send" VerticalAlignment="Center"/>
+                            <Label Content="Send E-Mail" Margin="2 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
