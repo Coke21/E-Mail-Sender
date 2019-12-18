@@ -122,7 +122,7 @@ namespace EMailSender.ViewModels
         }
 
         public bool CanSendEMail(string emailAddressTextBox) => emailAddressTextBox.Contains('@');
-        public async void SendEMail(string emailAddressTextBox)
+        public async Task SendEMailAsync(string emailAddressTextBox)
         {
             try
             {
