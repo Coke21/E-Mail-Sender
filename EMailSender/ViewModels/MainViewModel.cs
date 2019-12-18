@@ -121,21 +121,26 @@ namespace EMailSender.ViewModels
             }
         }
 
-
-        public bool CanSendEMail(string emailAddressTextBox)
-        {
-            return emailAddressTextBox.Contains('@');
-        }
+        public bool CanSendEMail(string emailAddressTextBox) => emailAddressTextBox.Contains('@');
         public async void SendEMail(string emailAddressTextBox)
         {
-            string plainText = $"To:{emailAddressTextBox}\r\n" +
-                               $"Subject: {SubjectTextBox}\r\n" +
-                               "Content-Type: text/html; charset=us-ascii\r\n\r\n" +
-                               $"<p>{TextTextBox}<p>";
+            try
+            {
+                string plainText = $"To:{emailAddressTextBox}\r\n" +
+                                   $"Subject: {SubjectTextBox}\r\n" +
+                                   "Content-Type: text/html; charset=us-ascii\r\n\r\n" +
+                                   $"<p>{TextTextBox}<p>";
 
-            var newMsg = new Google.Apis.Gmail.v1.Data.Message();
-            newMsg.Raw = Base64UrlEncode(plainText);
-            await Authentication.GService.Users.Messages.Send(newMsg, "me").ExecuteAsync();
+                var newMsg = new Google.Apis.Gmail.v1.Data.Message();
+                newMsg.Raw = Base64UrlEncode(plainText);
+                await Authentication.GService.Users.Messages.Send(newMsg, "me").ExecuteAsync();
+
+                MessageBox.Show("An E-Mail has been sent.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Error:\n{e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private string Base64UrlEncode(string input)
         {
