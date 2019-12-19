@@ -8,6 +8,7 @@
 * Upload a file to your Google Drive account.
 * The app sets the uploaded file to public and provides a link so users can download it.
 * Send an E-Mail though the app.
+* WPF MVVM pattern.
 
 ## Instaling Guide
 1. Have a Google account.
