@@ -10,7 +10,7 @@
 * Send an E-Mail though the app.
 * WPF MVVM pattern.
 
-## What's the point of this application?
+## Why did you create this application?
 This application was created to help a user on the Stack Overflow - https://stackoverflow.com/q/59242165
 
 ## Instaling Guide
