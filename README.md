@@ -26,6 +26,6 @@
 
 8. Type the E-mail address.
 
-9. A subject field can be empty.
+9. The subject field can be empty.
 
 10. Click Send-Email (now just redo the 6th step)
