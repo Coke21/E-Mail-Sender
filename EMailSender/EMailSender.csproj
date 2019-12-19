@@ -4,7 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>Images\Google.ico</ApplicationIcon>
+    <AssemblyName>E-Mail Sender</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

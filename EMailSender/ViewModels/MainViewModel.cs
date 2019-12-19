@@ -43,6 +43,8 @@ namespace EMailSender.ViewModels
 
         public async Task UploadFileAsync(Google.Apis.Drive.v3.DriveService service, string fileName)
         {
+            IsProgressBarEnabled = true;
+
             var file = new Google.Apis.Drive.v3.Data.File();
             file.Name = Path.GetFileName(fileName);
             file.Parents = new List<string> { "root" };
@@ -71,6 +73,20 @@ namespace EMailSender.ViewModels
 
             var returnedFile = await request.ExecuteAsync();
             DownloadableLinkTextBox = returnedFile.WebContentLink;
+
+            IsProgressBarEnabled = false;
+        }
+
+        private bool _isProgressBarEnabled;
+        public bool IsProgressBarEnabled
+        {
+            get { return _isProgressBarEnabled; }
+            set
+            {
+                _isProgressBarEnabled = value;
+
+                NotifyOfPropertyChange(() => IsProgressBarEnabled);
+            }
         }
 
         private string _downloadableLinkTextBox;
@@ -130,6 +146,8 @@ namespace EMailSender.ViewModels
                                    $"Subject: {SubjectTextBox}\r\n" +
                                    "Content-Type: text/html; charset=us-ascii\r\n\r\n" +
                                    $"<p>{TextTextBox}<p>";
+
+                //"<p><a href=\"https://www.youtube.com/\">test</a><p>"
 
                 var newMsg = new Google.Apis.Gmail.v1.Data.Message();
                 newMsg.Raw = Base64UrlEncode(plainText);
